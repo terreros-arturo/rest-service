@@ -36,14 +36,14 @@ app.post('/', (req, res) => {
     });
 });
 
-//capturar una excepcion no manejada
+//status http 500
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Ocurrio algun error, consulte con su administrador');
 });
 
 
-//Cualquier servicio no existente
+//status http 404
 app.use(function(req, res, next) {
     res.status(404).send('Recurso no encontrado, favor de verificarlo');
 });
