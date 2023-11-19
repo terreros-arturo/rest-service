@@ -16,7 +16,8 @@ app.patch('/patch', (req, res) => {
     console.log(`${tag} iniciando`, req.body);
 
     res.status(200).send({
-        message: 'recurso actualizado'
+        message: 'recurso actualizado',
+        recibido: req.body
     });
 })
 
