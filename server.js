@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.patch('/patch', (req, res) => {
+app.patch('/', (req, res) => {
     const tag = 'patchService';
 
     console.log(`${tag} iniciando`, req.body);
@@ -19,7 +19,18 @@ app.patch('/patch', (req, res) => {
         message: 'recurso actualizado',
         recibido: req.body
     });
-})
+});
+
+app.post('/', (req, res) => {
+    const tag = 'postService';
+
+    console.log(`${tag} iniciando`, req.body);
+
+    res.status(200).send({
+        message: 'recurso actualizado',
+        recibido: req.body
+    });
+});
 
 
 
