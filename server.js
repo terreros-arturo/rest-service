@@ -10,29 +10,32 @@ app.get('/', (req, res) => {
 });
 
 
-app.patch('/', (req, res) => {
+app.patch('/:id_contacto', (req, res) => {
     const tag = 'patchService';
 
-    console.log(`${tag} iniciando`, req.body);
+    console.log(`${tag} body`, req.body);
+    console.log(`${tag} headers`, req.headers);
 
+    console.log(`${tag} id_contacto ${req.params.id_contacto}`);
     res.status(200).send({
         message: 'recurso actualizado',
-        recibido: req.body
+        //recibido: req.body
     });
 });
 
 app.post('/', (req, res) => {
     const tag = 'postService';
 
-    console.log(`${tag} iniciando`, req.body);
+    console.log(`${tag} headers`, req.headers);
+    console.log(`${tag} body`, req.body);
 
     //error provocado
-    let val = "dasd";
-    console.log(`${tag} valor calculado ${JSON.parse(val)}`);
+    //let val = "dasd";
+    //console.log(`${tag} valor calculado ${JSON.parse(val)}`);
 
     res.status(200).send({
         message: 'recurso actualizado',
-        recibido: req.body
+        //recibido: req.body
     });
 });
 
