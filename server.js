@@ -57,7 +57,8 @@ app.post('/file', mdUpload, (req, res) => {
         });
     }
 
-    //console.log(`${tag} file`, req.files.file);
+    console.log(`${tag} file`, req.files.file);
+    console.log(`${tag} req.headers `, req.headers);
 
     let filePath = req.files.file.path;
     //filePath = __dirname + path.sep + filePath;
