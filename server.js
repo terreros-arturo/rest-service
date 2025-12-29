@@ -5,9 +5,14 @@ const fs = require('fs');
 
 const express = require ('express');
 const app = express();
+const fileUpload  = require('express-fileupload');  //carga de archivos para los adjuntos 
 
-const multipart = require('connect-multiparty');
-const mdUpload = multipart({uploadDir: __dirname + path.sep + 'tmp' + path.sep});
+app.use(express.json({limit: '50mb', extended: true}));
+//middleware para carga de archivos al server
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : __dirname + path.sep + 'tmp' + path.sep
+}));
 
 app.use(express.json());
 
@@ -46,7 +51,7 @@ app.post('/', (req, res) => {
 });
 
 
-app.post('/file', mdUpload, (req, res) => {
+app.post('/file', (req, res) => {
     const tag = 'saveFile';
     console.log(`${tag} guardando archivo`, req.body);
 
@@ -60,8 +65,10 @@ app.post('/file', mdUpload, (req, res) => {
     console.log(`${tag} file`, req.files.file);
     console.log(`${tag} req.headers `, req.headers);
 
-    let filePath = req.files.file.path;
+    let filePath = req.files.file.tempFilePath;
     //filePath = __dirname + path.sep + filePath;
+    console.log(`filepath ${filePath}`);
+    
 
     const fileName = req.files.file.name;
     const extFile = path.extname(fileName);
